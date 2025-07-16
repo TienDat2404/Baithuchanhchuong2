@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Bài 3 và Bài 4 Gộp Chung</title>
+</head>
+<body>
+
+  <!-- BÀI 3 - BẢNG ĐIỂM -->
+  <h1>Bài 3</h1>
+  <hr>
+  <table border="1">
+    <tr>
+        <th colspan="2">Student</th>
+        <th colspan="4">Exam</th>
+        <th colspan="4">2nd Exam</th>
+        <th colspan="2" rowspan="2">Final Grade</th>
+    </tr>
+    <tr>
+        <th>Code</th>
+        <th>Name</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Grade</th>
+        <th>Q1</th>
+        <th>Q2</th>
+        <th>Q3</th>
+        <th>Grade</th>
+    </tr>
+    <tr>
+        <td>80549061</td>
+        <td>John</td>
+        <td>70%</td>
+        <td>100%</td>
+        <td>100%</td>
+        <td>17.6</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>17.6</td>
+        <td>18</td>
+    </tr>
+    <tr>
+        <td>80549062</td>
+        <td>Mary</td>
+        <td>10%</td>
+        <td>50%</td>
+        <td>50%</td>
+        <td>6.8</td>
+        <td>100%</td>
+        <td>100%</td>
+        <td>50%</td>
+        <td>16.5</td>
+        <td>16.5</td>
+        <td>17</td>
+    </tr>
+    <tr>
+        <td>80549063</td>
+        <td>Claire</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>50%</td>
+        <td>50%</td>
+        <td>50%</td>
+        <td>10.0</td>
+        <td>10.0</td>
+        <td>10</td>
+    </tr>
+  </table>
+
+  <!-- BÀI 4 - FORM NHÂN VIÊN -->
+  <h1>Bài 4</h1>
+  <hr>
+  <form>
+    <!-- Basic Info -->
+    <h2>Basic Info</h2>
+    <table>
+      <tr>
+        <td><label>Employee ID</label></td>
+        <td><input type="text" value="9" readonly></td>
+      </tr>
+      <tr>
+        <td><label>Last Name</label></td>
+        <td><input type="text" value="Dodsworth"></td>
+      </tr>
+      <tr>
+        <td><label>First Name</label></td>
+        <td><input type="text" value="Anne"></td>
+      </tr>
+      <tr>
+        <td><label>Gender</label></td>
+        <td>
+          <table>
+            <tr><td><input type="radio" name="gender" value="male"> Male</td></tr>
+            <tr><td><input type="radio" name="gender" value="female"> Female</td></tr>
+            <tr><td><input type="radio" name="gender" value="xxx"> XXX</td></tr>
+            <tr><td><input type="radio" name="gender" value="zzz" checked> ZZZ</td></tr>
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Title</label></td>
+        <td><input type="text" value="Sales Representative"></td>
+      </tr>
+      <tr>
+        <td><label>Suffix</label></td>
+        <td><input type="text" value="Ms."></td>
+      </tr>
+      <tr>
+        <td><label>BirthDate</label></td>
+        <td><input type="datetime-local" value=""></td>
+      </tr>
+      <tr>
+        <td><label>HireDate</label></td>
+        <td><input type="datetime-local" value=""></td>
+      </tr>
+      <tr>
+        <td><label>SSN # (if applicable)</label></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><label>Reports To</label></td>
+        <td>
+          <select>
+            <option selected>Buchanan</option>
+          </select>
+        </td>
+      </tr>
+    </table>
+
+    <!-- Contact Info -->
+    <h2>Contact Info</h2>
+    <table>
+      <tr>
+        <td><label>Email</label></td>
+        <td><input type="text" placeholder="name@example.com"></td>
+      </tr>
+      <tr>
+        <td><label>Address</label></td>
+        <td><input type="text" value="7 Houndstooth Rd."></td>
+      </tr>
+      <tr>
+        <td><label>City</label></td>
+        <td><input type="text" value="London"></td>
+      </tr>
+      <tr>
+        <td><label>Region</label></td>
+        <td><input type="text"></td>
+      </tr>
+      <tr>
+        <td><label>Postal Code</label></td>
+        <td><input type="text" value="WG2 7LT"></td>
+      </tr>
+      <tr>
+        <td><label>Country</label></td>
+        <td>
+          <select>
+            <option>Vietnam</option>
+            <option>United States</option>
+            <option selected>Russian Federation</option>
+            <option>United Kingdom</option>
+          </select>
+        </td>
+      </tr>
+      <tr>
+        <td><label>US Home Phone</label></td>
+        <td><input type="text" value="(234)234-2342"></td>
+      </tr>
+      <tr>
+        <td><label>Photo</label></td>
+        <td><input type="text" value="EmpID9.bmp"></td>
+      </tr>
+    </table>
+
+    <!-- Optional Info -->
+    <h2>Optional Info</h2>
+    <table>
+      <tr>
+        <td><label>Notes</label></td>
+        <td>
+          <textarea rows="5" cols="50">Anne has a BA degree in English from St. Lawrence College.
+She is fluent in French and German.ZZZ</textarea>
+        </td>
+      </tr>
+      <tr>
+        <td><label>Preferred Shift</label></td>
+        <td>
+          <input type="checkbox" name="shift" value="regular"> Regular
+          <input type="checkbox" name="shift" value="gravyyard" checked> Gravy Yard
+        </td>
+      </tr>
+      <tr>
+        <td><label>Active?</label></td>
+        <td><input type="checkbox" checked></td>
+      </tr>
+      <tr>
+        <td><label>Are you human?</label></td>
+        <td>
+            <p>T I D A W O</p>
+            <small>Click to change</small><br>
+            <input type="text">
+        </td>
+      </tr>
+    </table>
+
+    <!-- Submit -->
+    <br>
+    <hr>
+    <table>
+      <tr>
+        <td>
+          <button type="submit">Submit</button>
+          <button type="reset">Cancel</button>
+        </td>
+      </tr>
+    </table>
+    <p>* required</p>
+  </form>
+
+</body>
+</html>
