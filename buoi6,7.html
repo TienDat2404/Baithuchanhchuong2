@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Quản lý sinh viên</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <style>
+    #message {
+      font-weight: bold;
+    }
+    tr:hover {
+      background-color: #f8f9fa;
+    }
+  </style>
+</head>
+<body class="container my-4">
+
+  <h2 class="text-primary mb-4">Quản lý sinh viên</h2>
+
+  <div id="message" class="mb-3 text-success"></div>
+
+  <form id="studentForm" class="border p-4 rounded bg-light">
+    <div class="mb-3">
+      <label for="name" class="form-label">Họ tên:</label>
+      <input type="text" id="name" class="form-control" placeholder="Nhập họ tên">
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" id="email" class="form-control" placeholder="example@mail.com">
+    </div>
+    <div class="mb-3">
+      <label for="major" class="form-label">Ngành:</label>
+      <select id="major" class="form-select">
+        <option value="">-- Chọn ngành --</option>
+        <option>CNTT</option>
+        <option>Điện tử</option>
+        <option>Kinh tế</option>
+      </select>
+    </div>
+    <button type="submit" id="submitBtn" class="btn btn-primary w-100">Thêm sinh viên</button>
+  </form>
+
+  <table class="table table-bordered table-striped mt-4" id="studentTable">
+    <thead class="table-dark">
+      <tr>
+        <th>STT</th>
+        <th>Họ tên</th>
+        <th>Email</th>
+        <th>Ngành</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+  <script>
+    const form = document.getElementById("studentForm");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const majorSelect = document.getElementById("major");
+    const tableBody = document.querySelector("#studentTable tbody");
+    const message = document.getElementById("message");
+    const submitBtn = document.getElementById("submitBtn");
+
+    let editIndex = -1;
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const name = nameInput.value.trim();
+      const email = emailInput.value.trim();
+      const major = majorSelect.value;
+
+      if (!validateForm(name, email, major)) return;
+
+      if (editIndex === -1) {
+        const newRow = tableBody.insertRow();
+        newRow.innerHTML = `
+          <td>${tableBody.rows.length}</td>
+          <td>${name}</td>
+          <td>${email}</td>
+          <td>${major}</td>
+          <td>
+            <button class="btn btn-warning btn-sm edit">Sửa</button>
+            <button class="btn btn-danger btn-sm delete">Xóa</button>
+          </td>`;
+        showMessage("Thêm thành công!");
+      } else {
+        const row = tableBody.rows[editIndex];
+        row.cells[1].innerText = name;
+        row.cells[2].innerText = email;
+        row.cells[3].innerText = major;
+        showMessage("Cập nhật thành công!");
+        submitBtn.innerText = "Thêm sinh viên";
+        editIndex = -1;
+      }
+
+      form.reset();
+    });
+
+    tableBody.addEventListener("click", function (e) {
+      const target = e.target;
+      const row = target.closest("tr");
+
+      if (target.classList.contains("delete")) {
+        row.remove();
+        updateSTT();
+        showMessage("Xóa thành công!");
+      }
+
+      if (target.classList.contains("edit")) {
+        editIndex = [...tableBody.rows].indexOf(row);
+        nameInput.value = row.cells[1].innerText;
+        emailInput.value = row.cells[2].innerText;
+        majorSelect.value = row.cells[3].innerText;
+        submitBtn.innerText = "Cập nhật";
+      }
+    });
+
+    function validateForm(name, email, major) {
+      if (name.length < 3) {
+        alert("Tên phải có ít nhất 3 ký tự.");
+        return false;
+      }
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(email)) {
+        alert("Email không hợp lệ.");
+        return false;
+      }
+      if (major === "") {
+        alert("Vui lòng chọn ngành.");
+        return false;
+      }
+      return true;
+    }
+
+    function updateSTT() {
+      [...tableBody.rows].forEach((row, index) => {
+        row.cells[0].innerText = index + 1;
+      });
+    }
+
+    function showMessage(text) {
+      message.innerText = text;
+      setTimeout(() => {
+        message.innerText = "";
+      }, 2000);
+    }
+  </script>
+
+</body>
+</html>
